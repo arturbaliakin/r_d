@@ -1,4 +1,4 @@
-const arrSumArrow = (arr) => arr.reduce((a, b) => a + b);
+const arrSumArrow = (arr) => arr.reduce((a, b) => a + b, 0);
 
 const numArr = new Array();
 

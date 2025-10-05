@@ -1,5 +1,5 @@
 function arrSum (arr) {
-    return arr.reduce((a, b) => a + b);
+    return arr.reduce((a, b) => a + b, 0);
 }
 
 const numArr = new Array();
