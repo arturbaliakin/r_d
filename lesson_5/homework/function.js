@@ -1,0 +1,14 @@
+function arrSum (arr) {
+    return arr.reduce((a, b) => a + b, 0);
+}
+
+const numArr = new Array();
+
+for (let i = 1; i <= 55; i++) {
+    numArr.push(i);
+};
+
+const srtingArr = ['camera', 'vtx', 'stack', 'motors', 'frame', 'props'];
+
+console.log(arrSum(numArr));
+console.log(arrSum(srtingArr));
