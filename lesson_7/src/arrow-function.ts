@@ -1,4 +1,4 @@
-const arrSumArrow = (arr: unknown[]): number | string => {
+const arrSumArrow = (arr: number[] | string[]): number | string => {
     if (arr.length === 0) return 0;
     if (typeof arr[0] === 'number') {
         return (arr as number[]).reduce((a, b) => a + (b as number), 0);
@@ -15,7 +15,7 @@ for (let i = 1; i <= 55; i++) {
     numArr.push(i);
 };
 
-const srtingArr = ['camera', 'vtx', 'stack', 'motors', 'frame', 'props'];
+const srtingArr: string[] = ['camera', 'vtx', 'stack', 'motors', 'frame', 'props'];
 
 console.log(arrSumArrow(numArr));
 console.log(arrSumArrow(srtingArr));

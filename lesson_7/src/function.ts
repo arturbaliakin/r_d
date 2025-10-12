@@ -1,16 +1,15 @@
 export {};
 
-function arrSum(arr: unknown[]): Record<string, unknown> {
+function arrSum(arr: number[] | string[]): number | string {
     const initialValue = typeof arr[0] === 'string' ? '' : 0;
-    return {
-        sum: arr.reduce((a, b) => {
-            if (typeof initialValue === 'string') {
-                return String(a) + String(b);
-            } else {
-                return Number(a) + Number(b);
-            }
-        }, initialValue)
-    };
+    return arr.reduce((a, b) => {
+        if (typeof initialValue === 'string') {
+            return String(a) + String(b);
+        } else {
+            return Number(a) + Number(b);
+        }
+    }, initialValue);
+
 }
 
 const numArr: number[] = [];
