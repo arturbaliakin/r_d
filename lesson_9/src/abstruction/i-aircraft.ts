@@ -5,6 +5,6 @@ export interface IAircraft {
 
     powerOn(): void;
     powerOff(): void;
-    increaseThrotlle(value: number): void;
-    decreaseThrotlle(value: number): void;
+    increaseThrotlle(value: number): number;
+    decreaseThrotlle(value: number): number;
 }

@@ -25,3 +25,7 @@ flyMode.land(drone);
 
 drone.switchVtxPower(2);
 
+drone.startRecording();
+drone.stopRecording();
+drone.stopRecording();
+

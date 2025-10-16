@@ -1,17 +1,20 @@
 import { IAircraft } from './abstruction/i-aircraft';
+import { IVideoCapture } from './abstruction/i-video-record';
 
-export class Drone implements IAircraft {
+export class Drone implements IAircraft, IVideoCapture {
 
     public throtlleLevel: number;
     public speed: number;
     public powerState: boolean;
     public vtxPower: number;
+    public isRecording: boolean;
 
     public constructor() {
         this.throtlleLevel = 0;
         this.speed = 0;
         this.powerState = false;
         this.vtxPower = 0;
+        this.isRecording = false;
     }
 
     public powerOn(): void {
@@ -61,14 +64,6 @@ export class Drone implements IAircraft {
         return this.throtlleLevel;
     }
 
-    public increaseThrotllethrotlle(throtlle: number): number {
-        return this.increaseThrotlle(throtlle);
-    }
-
-    public decreaseThrotllethrotlle(throtlle: number): number {
-        return this.decreaseThrotlle(throtlle);
-    }
-
     public switchVtxPower (power:number): number {
         this.vtxPower = this.switchVtxPowerLogic(power);
         return this.vtxPower;
@@ -86,6 +81,24 @@ export class Drone implements IAircraft {
             state = this.vtxPower;
         }
         return state;
+    }
+
+    public startRecording(): boolean {
+        this.isRecording = true;
+        console.log('Recording started');
+        return this.isRecording;
+    }
+
+    public stopRecording(): boolean {
+        if (this.isRecording) {
+            console.log('Video saved');
+        } else {
+            console.log('Recording is not started');
+            return this.isRecording;
+        }
+        this.isRecording = false;
+        console.log('Recording stoped');
+        return this.isRecording;
     }
 }
 
