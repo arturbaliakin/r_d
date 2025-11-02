@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "24f67172-04da-489c-b1ec-1c04a072ddee",
+		"name": "Lesson 12 homework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23857357"
+	},
+	"item": [
+		{
+			"name": "get_randon_joke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has all required keys\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.keys([\"type\", \"setup\", \"punchline\", \"id\"]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All fields have correct types\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.type).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.setup).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.punchline).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/random_joke",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"random_joke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "random_ten",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is JSON array\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 10 jokes\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(10);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/random_ten",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"random_ten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/jokes/random/<your_ammount>",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Number of jokes equals requested amount\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    const requestedAmount = parseInt(pm.request.url.path.slice(-1)[0], 10);\r",
+							"\r",
+							"    pm.expect(jsonData.length).to.eql(requestedAmount);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/jokes/random/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"jokes",
+						"random",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/jokes/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returned ID matches requested ID\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    const pathSegments = pm.request.url.path;\r",
+							"    const requestedId = parseInt(pathSegments.slice(-1)[0], 10);\r",
+							"\r",
+							"    pm.expect(jsonData.id).to.eql(requestedId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/jokes/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"jokes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://official-joke-api.appspot.com",
+			"type": "string"
+		}
+	]
+}
